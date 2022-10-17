@@ -7,12 +7,13 @@ const repContract = new MyContract();
 const init = function () {
   adminContract.initContract({
     contractId: adminContractId,
+    changeMethods: ["mint_chest", "place_chest"],
     viewMethods: ["get_active_chests_by_key"],
   });
 
   repContract.initContract({
     contractId: repContractId,
-    changeMethods: ["mint_chest"],
+    changeMethods: ["mint_chest", "place_chest"],
     viewMethods: ["get_active_chests_by_key"],
   });
 };
