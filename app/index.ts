@@ -11,6 +11,9 @@ app.use(json());
 
 app.use("/call-contract", callContractRoute);
 app.use("/get-chests", getChestsRoute);
+app.get("/", (req, res) => {
+  res.send("Hey this is my API running 🥳");
+});
 
 initNear();
 
