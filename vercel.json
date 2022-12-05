@@ -3,7 +3,7 @@
   "env": {},
   "builds": [
     {
-      "src": "src/index.ts",
+      "src": "app/index.ts",
       "use": "@vercel/node"
     }
   ],
