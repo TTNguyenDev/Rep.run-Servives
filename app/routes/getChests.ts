@@ -5,7 +5,7 @@ import { viewMethod } from "../near";
 
 const getChestsRoute = Router();
 
-getChestsRoute.get("/all-active", async function (req, res) {
+getChestsRoute.post("/all-active", async function(req, res) {
   const key = req.body["key"];
   if (!key) {
     return res.status(400).json(failedResponse("Missing field `key`."));
