@@ -33,7 +33,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "src/index.ts"
+      "destination": "app/index.ts"
     }
   ]
 }
