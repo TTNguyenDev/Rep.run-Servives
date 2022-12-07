@@ -2,10 +2,11 @@ import { Router } from "express";
 
 import { failedResponse, successResponse } from "../models/MyResponse";
 import { viewMethod } from "../near";
+import { repContractId } from "../utils/config";
 
 const getChestsRoute = Router();
 
-getChestsRoute.post("/all-active", async function(req, res) {
+getChestsRoute.post("/all-active", async function (req, res) {
   const key = req.body["key"];
   if (!key) {
     return res.status(400).json(failedResponse("Missing field `key`."));
@@ -32,7 +33,12 @@ getChestsRoute.post("/all-active", async function(req, res) {
       contract: "rep",
     }));
 
-    res.json(successResponse([...adminChests, ...repChests]));
+    res.json(
+      successResponse({
+        chests: [...adminChests, ...repChests],
+        contractId: repContractId,
+      })
+    );
   } catch (err: any) {
     res.status(500).json(failedResponse(err["message"]));
   }
