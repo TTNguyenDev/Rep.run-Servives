@@ -1,12 +1,11 @@
 import { Router } from "express";
-import Converter from "unity-rich-text-converter";
 
 import { failedResponse, successResponse } from "../models/MyResponse";
 import { viewMethod } from "../near";
 
 const getChestsRoute = Router();
 
-getChestsRoute.post("/all-active", async function (req, res) {
+getChestsRoute.post("/all-active", async function(req, res) {
   const key = req.body["key"];
   if (!key) {
     return res.status(400).json(failedResponse("Missing field `key`."));
@@ -33,14 +32,7 @@ getChestsRoute.post("/all-active", async function (req, res) {
       contract: "rep",
     }));
 
-    const richConverter = new Converter();
-
-    const chests = [...adminChests, ...repChests];
-    chests.forEach((ch) => {
-      ch["message"] = richConverter.html2unity(ch["message"]);
-    });
-
-    res.json(successResponse(chests));
+    res.json(successResponse([...adminChests, ...repChests]));
   } catch (err: any) {
     res.status(500).json(failedResponse(err["message"]));
   }
